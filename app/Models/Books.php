@@ -13,9 +13,11 @@ class Books extends Model
         'id',
         'book_name',
         'author',
+        'author_id',
         'published_at',
         'create_at',
         'update_at'
     ];
+    // protected $guarded = [];
     use HasFactory;
 }

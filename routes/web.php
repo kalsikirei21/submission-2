@@ -1,7 +1,10 @@
 <?php
+
+use App\Http\Controllers\Authors\AuthorsController;
 use App\Http\Controllers\Users\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Books\BooksController;
+use App\Models\Books;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,13 +29,20 @@ Route::get('/', function () {
 // Route ::get('/create', [UserController::class, 'create']);
 // Route ::get('{id}/edit', [UserController::class, 'edit']);
 // Route ::put('{id}', [UserController::class, 'update']);
-// Route ::delete('{id}', [UserController::class, 'destroy']);
+Route ::delete('{id}', [UserController::class, 'destroy']);
 
 // });
 Route::group(['prefix' => 'books'], function () {
     Route::get('/index', [BooksController::class, 'index']);
+    Route::get('/create', [BooksController::class, 'createBook']);
     Route::post('/save-book', [BooksController::class, 'saveBook']);
-    Route::get('/delete-book', [BooksController::class, 'deleteBook']);
+    Route::get('/{id}/edit-book', [BooksController::class, 'editBook']);
+    Route::put('/{id}', [BooksController::class, 'updateBook']);
+    Route::delete('{id}', [BooksController::class, 'deleteBook']);
+});
+Route::group(['prefix' => 'authors'], function () {
+    Route::get('/index', [AuthorsController::class, 'index']);
+    Route::post('/save-authors', [AuthorsController::class, 'saveAuthors']);
 });
 
 
